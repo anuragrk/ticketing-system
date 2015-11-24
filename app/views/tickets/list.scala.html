@@ -1,0 +1,48 @@
+@(tickets: Seq[Ticket])
+
+@main {
+
+  <div id="content">
+    <div id="content-header">
+      <h1>Tickets</h1>
+    </div>
+    <div id="breadcrumb">
+      <a href="#" class="current">Tickets</a>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group pull-right" style="margin: 8px 0px 8px 8px;">
+                <a href="@routes.TicketsController.showCreate"><input type="button" value="Create Ticket" class="btn btn-primary pull-right"/></a>
+            </div>
+
+          <div class="widget-box widget-calendar">
+            <div class="widget-title"><span class="icon"><i class="fa fa-bullhorn"></i></span>
+              <h5>Tickets</h5>
+            </div>
+            <div class="widget-content nopadding">
+              <table id="tickets" class="table tablesorter" width="850px">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Status</th>
+                    <th>Area</th>
+                  </tr>
+                </thead>
+                <tbody class="searchable">
+                  @tickets.map { ticket =>
+                  <tr onclick="document.location = '@routes.TicketsController.read(ticket._id)'">
+                    <td style="max-width: 150px;" class="truncate">@ticket._id</td>
+                    <td style="max-width: 150px;" class="truncate">@ticket.status</td>
+                    <td style="max-width: 150px;" class="truncate">@ticket.area</td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

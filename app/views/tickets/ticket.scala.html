@@ -1,0 +1,50 @@
+@(form: Form[models.TicketForms.TicketRequest], action: Call, cancel: Call)
+
+@main {
+
+<div id="content">
+    <div id="content-header">
+        <h1>Define Ticket</h1>
+    </div>
+    <div id="breadcrumb">
+
+        <a href="@cancel">Ticket</a>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="widget-box widget-calendar">
+                    <div class="widget-title"><span class="icon"><i class="fa"></i></span>
+                        <h5>Create Ticket</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row">
+                            <div id="" class="col-xs-12">
+
+                                @helper.form(action) {
+                                <div class="form-group">
+                                    @helper.inputText(form("customerName"), '_label -> "Customer Name (required)", 'class -> "form-control", '_showConstraints -> false )
+                                    @helper.inputText(form("customerPhoneNumber"), '_label -> "Customer Phone Number (required)", 'class -> "form-control", '_showConstraints -> false )
+                                    @helper.inputText(form("comments"), '_label -> "Comments (required)", 'class -> "form-control", '_showConstraints -> false )
+                                    @helper.inputText(form("createdBy"), '_label -> "Created By (required)", 'class -> "form-control", '_showConstraints -> false )
+                                    @helper.inputText(form("assignedTo"), '_label -> "Assigned To (required)", 'class -> "form-control", '_showConstraints -> false )
+                                    @helper.select(form("status"),options = Seq(("New","New"),("Open","Open"),("Closed","Closed")) , '_label -> "Status (required)", 'class -> "form-control", 'style -> "max-width: 200px", '_showConstraints -> false)
+                                    @helper.select(form("area"),options = Seq(("A","A"),("B","B"),("C","C"),("D","D"),("E","E")) , '_label -> "Area (required)", 'class -> "form-control", 'style -> "max-width: 200px", '_showConstraints -> false)
+                                </div>
+                                <a href="@cancel"><input type="button" value="Cancel" class="btn btn-default"/></a>
+                                @if(form("status").value.nonEmpty && !form("status").value.get.equals("Closed")){
+                                <button type="submit" class="btn btn-primary pull-right" name="submit" id="submit" value="Submit">Save</button>
+                                }
+                                @if(form("status").value.isEmpty){
+                                <button type="submit" class="btn btn-primary pull-right" name="submit" id="submit" value="Submit">Save</button>
+                                }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

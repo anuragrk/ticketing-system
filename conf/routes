@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET         /                   @controllers.Application.index
+
+
+
+# Tickets
+GET         /tickets           @controllers.TicketsController.list
+GET         /ticket            @controllers.TicketsController.showCreate
+POST        /ticket            @controllers.TicketsController.create
+GET         /ticket/:id        @controllers.TicketsController.read(id: UUID)
+GET         /ticket/:id/edit   @controllers.TicketsController.showEdit(id: UUID)
+POST        /ticket/:id/edit   @controllers.TicketsController.edit(id: UUID)
+
+
+# WebJars
+GET         /webjars/*file      controllers.WebJarAssets.at(file)
+
+# Assets
+GET         /assets/*file      controllers.Assets.versioned(path="/public", file: Asset)
