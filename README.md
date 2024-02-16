@@ -1,6 +1,6 @@
 # ticketing-system
 
-A customer request service application using Scala/Play Framework
+A customer service request application using Scala/Play Framework
 
 ### How to build and run the project
 sbt clean compile <br />
